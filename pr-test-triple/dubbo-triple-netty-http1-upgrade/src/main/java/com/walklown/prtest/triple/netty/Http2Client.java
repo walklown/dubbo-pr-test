@@ -58,7 +58,7 @@ public final class Http2Client {
 
     static final int PORT = Integer.parseInt(System.getProperty("port", "50052"));
 
-    static final String URL2 = System.getProperty("url2", "/org.apache.dubbo.springboot.demo.Demo1Service/sayHello");
+    static final String URL2 = System.getProperty("url2", "/org.apache.dubbo.springboot.demo.DemoService/sayHello");
     
     static final String URL2DATA = System.getProperty("url2data", "[\"my name\"]");
 
