@@ -21,5 +21,10 @@ dubbo:
   protocol:
     name: tri
     port: 50052
+    ssl-enabled: true
+  ssl:
+    server-key-cert-chain-path: classpath:certs/server0.pem
+    server-private-key-path: classpath:certs/server0.key
+    server-trust-cert-collection-path: classpath:certs/ca.pem
   registry:
     address: zookeeper://${zookeeper.address:127.0.0.1}:2181
