@@ -15,8 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.dubbo.springboot.demo.provider;
-
+package org.apache.dubbo.springboot.recurrent;
 
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
@@ -24,10 +23,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @EnableDubbo
-public class ProviderApplication {
+public class ConsumerApplication {
+
     public static void main(String[] args) {
+        // for mac
         System.setProperty("dubbo.network.interface.preferred", "en0");
-        new EmbeddedZooKeeper(2181, false).start();
-        SpringApplication.run(ProviderApplication.class, args);
+        SpringApplication.run(ConsumerApplication.class, args);
     }
 }

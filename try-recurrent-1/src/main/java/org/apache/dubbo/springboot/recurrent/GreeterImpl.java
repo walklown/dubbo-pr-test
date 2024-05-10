@@ -15,19 +15,26 @@
  * limitations under the License.
  */
 
-package org.apache.dubbo.springboot.demo.provider;
+package org.apache.dubbo.springboot.demo.consumer;
 
+import org.apache.dubbo.config.annotation.DubboService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.util.concurrent.CompletableFuture;
 
-@SpringBootApplication
-@EnableDubbo
-public class ProviderApplication {
-    public static void main(String[] args) {
-        System.setProperty("dubbo.network.interface.preferred", "en0");
-        new EmbeddedZooKeeper(2181, false).start();
-        SpringApplication.run(ProviderApplication.class, args);
+@DubboService
+public class GreeterImpl extends DubboGreeterTriple.GreeterImplBase {
+    private static final Logger LOGGER = LoggerFactory.getLogger(GreeterImpl.class);
+
+    @Override
+    public GreeterReply greet(GreeterRequest request) {
+        LOGGER.info("Server received greet request {}", request);
+        return GreeterReply.newBuilder()
+                .setMessage("hello," + request.getName())
+                .build();
+    }
+    public CompletableFuture<GreeterReply> greetAsync(GreeterRequest request){
+        return CompletableFuture.completedFuture(greet(request));
     }
 }
