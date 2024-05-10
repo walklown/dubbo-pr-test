@@ -14,33 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.dubbo.springboot.demo.consumer;
+package org.apache.dubbo.springboot.recurrent;
 
 import org.apache.dubbo.config.annotation.DubboReference;
-import org.apache.dubbo.springboot.demo.DemoService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-
 @Component
 public class Task implements CommandLineRunner {
-    @DubboReference
-    private DemoService demoService;
 
     @DubboReference
     private Greeter greeter;
 
     @Override
     public void run(String... args) throws Exception {
-        String result = demoService.sayHello("world");
-        System.out.println("Receive result ======> " + result);
+        System.out.println("run");
 
         new Thread(()-> {
             while (true) {
                 try {
                     Thread.sleep(1000);
-                    System.out.println(new Date() + " Receive result ======> " + demoService.sayHello("world"));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                     Thread.currentThread().interrupt();

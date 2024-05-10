@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.dubbo.springboot.demo.consumer;
+package org.apache.dubbo.springboot.recurrent;
 
 import org.apache.dubbo.config.annotation.DubboService;
 import org.slf4j.Logger;

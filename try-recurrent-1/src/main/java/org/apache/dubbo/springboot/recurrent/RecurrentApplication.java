@@ -23,11 +23,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @EnableDubbo
-public class ConsumerApplication {
+public class RecurrentApplication {
 
     public static void main(String[] args) {
         // for mac
         System.setProperty("dubbo.network.interface.preferred", "en0");
-        SpringApplication.run(ConsumerApplication.class, args);
+        new EmbeddedZooKeeper(2181, false).start();
+        SpringApplication.run(RecurrentApplication.class, args);
     }
 }
